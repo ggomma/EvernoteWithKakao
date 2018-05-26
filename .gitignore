@@ -1,2 +1,4 @@
 credentials.js
 node_modules/
+ggomma.pem
+sftp-config.json
