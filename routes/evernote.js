@@ -1,16 +1,17 @@
 import express from 'express';
 import createDailyNote from '../lib/evernote/createDailyNote';
+import updateNote from '../lib/evernote/updateNote';
 import { scheduleJob } from 'node-schedule';
 
 const router = express.Router();
 
+
 router.get('/daily', (req, res, next) => {
   const today = new Date();
   const title = today.toISOString().slice(0,10).replace(/-/g, '.');
-  createDailyNote({
-    title,
-  })
-  res.send('DONE')
+  createDailyNote({title});
+
+  res.send('DONE');
 })
 
 module.exports = router;

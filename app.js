@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 // routes
 const index = require('./routes/index');
 const evernote = require('./routes/evernote');
+const kakao = require('./routes/kakao');
 
 // MONGO DB CONNECTION
 mongoose.connect('mongodb://localhost/evernoteKakao');
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/evernote', evernote);
+app.use('/kakao', kakao);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
