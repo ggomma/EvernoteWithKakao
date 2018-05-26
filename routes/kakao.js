@@ -8,16 +8,18 @@ const router = express.Router();
 router.get('/keyboard', (req, res, next) => {
   res.json({
     "type" : "buttons",
-    "buttons" : [KAKAO.SAVE_TO_EVERNOTE, "선택 2", "선택 3"]
+    "buttons" : [KAKAO.SAVE_TO_EVERNOTE]
   });
 })
 
 
 router.post('/message', (req, res, next) => {
   const { user_key, content } = req.body;
-  const nextStep = selector(user_key, content);
-
-  res.json(nextStep);
+  selector(user_key, content)
+    .then(message => res.json(message))
+    .catch(err => {
+      throw new Error(err);
+    })
 })
 
 module.exports = router;

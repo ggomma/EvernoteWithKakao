@@ -17,7 +17,7 @@ noteSchema.statics.saveNote = (title, guid) => {
       if(err) return reject(err);
       let note = new Note();
       if (exNote) {
-        note = exNote
+        note = exNote;
       }
       note.title = title;
       note.guid = guid;
@@ -33,7 +33,7 @@ noteSchema.statics.findNote = (title) => {
   return new Promise((resolve, reject) => {
     Note.findOne({title}, (err, note) => {
       if(err) return reject(err);
-      if(note === null) return resolve(null);
+      if(note === null || note === undefined) return resolve(null);
       else return resolve(note.guid);
     });
   })

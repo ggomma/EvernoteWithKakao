@@ -1,25 +1,13 @@
 import express from 'express';
-import createDailyNote from '../lib/evernote/createDailyNote';
-import updateNote from '../lib/evernote/updateNote';
-import { scheduleJob } from 'node-schedule';
+import { postDailyNote, getNote } from '../lib/evernote';
+import { today } from '../lib/constants';
 
 const router = express.Router();
 
-
+// Forcefully generate today's note
 router.get('/daily', (req, res, next) => {
-  const today = new Date();
-  const title = today.toISOString().slice(0,10).replace(/-/g, '.');
-  createDailyNote({title});
-
+  postDailyNote(today)
   res.send('DONE');
 })
 
 module.exports = router;
-
-
-// scheduleJob('0 0 09 * * *', () => {
-//   // every midnight in Korea timezone
-//   const today = new Date();
-//   const title = today.toISOString().slice(0,10).replace(/-/g, '.');
-//   // createDailyNote({})
-// });
