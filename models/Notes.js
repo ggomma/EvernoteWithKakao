@@ -34,7 +34,7 @@ noteSchema.statics.findNote = (title) => {
     Note.findOne({title}, (err, note) => {
       if(err) return reject(err);
       if(note === null || note === undefined) return resolve(null);
-      else return resolve(note.guid);
+      return resolve(note.guid);
     });
   })
 }
